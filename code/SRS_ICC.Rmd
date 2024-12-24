@@ -1,0 +1,142 @@
+---
+title: "SRS-ICC"
+output: html_notebook
+author: "Qianying Wu"
+---
+Calculating the ICC of the SRS scores, including total score, subscale scores, and item-wise scores.
+
+
+#First import libraries
+```{r library}
+library(tidyverse)
+library(ggplot2)
+library(psych)
+library(ggpubr)
+setwd("/Users/wuqy0214/Documents/GitHub/SRS_variability_stability/code") # change to your own directory
+```
+
+#Load data
+```{r load_data}
+data_trt <- read_csv("../data/test_retest_excl",col_names = TRUE)[,-1]
+```
+
+# ICC calculation
+Helper function: calculate ICC of one variable
+Input: the variable name
+Output: ICC, upper bound, lower bound
+
+```{r helperF}
+ICC_var_calculate <- function(varname,data){
+  # extract variables
+  data_var <- data[,c(paste0(varname,"_T1"),paste0(varname,"_T2"))]
+  
+  # calculate ICC: two-way random effects, absolute agreement, single measurement ICC(2,1)
+  suppressMessages({ICC_result <- ICC(data_var)})
+  output <- ICC_result$results[,c("ICC","upper bound","lower bound")][2,]
+  
+  return(output)
+}
+
+```
+
+Calculate ICC for online and In-lab sample, respectively, for the period after the cutoff
+
+```{r ICC_onlinevsinlab,  message=FALSE, warning=FALSE}
+# all variables
+var_list <-  c("SRS","SRS_AWR","SRS_COG","SRS_COM","SRS_MOT","SRS_RRB",paste0("SRS_",seq(1,65)))
+# output
+ICC_all_types <- data.frame()
+
+data_lab = data_trt[data_trt$format=="In lab",]
+for (varname in var_list){
+  # calculate ICC
+  res_var <- ICC_var_calculate(varname,data_lab)
+  res_var$variable = varname
+  res_var$gap = "six-mo"
+  res_var$sample = "In lab"
+  # combine results to the dataframe
+  ICC_all_types <- rbind(ICC_all_types,res_var)
+}
+
+data_online = data_trt[data_trt$format=="Online",]
+for (varname in var_list){
+  # calculate ICC
+  res_var <- ICC_var_calculate(varname,data_online)
+  res_var$variable = varname
+  res_var$gap = "six-mo"
+  res_var$sample = "Online"
+  # combine results to the dataframe
+  ICC_all_types <- rbind(ICC_all_types,res_var)
+}
+```
+Calculate the combined ICC
+
+```{r ICC_ALL,  message=FALSE, warning=FALSE}
+# all variables
+var_list <-  c("SRS","SRS_AWR","SRS_COG","SRS_COM","SRS_MOT","SRS_RRB",paste0("SRS_",seq(1,65)))
+# output
+ICC_all <- data.frame()
+
+for (varname in var_list){
+  # calculate ICC
+  res_var <- ICC_var_calculate(varname,data_trt)
+  res_var$variable = varname
+  res_var$gap = "six-mo"
+  res_var$sample = "both"
+  # combine results to the dataframe
+  ICC_all <- rbind(ICC_all,res_var)
+}
+
+write.csv(ICC_all, "../results/ICC_both.csv", row.names=FALSE, quote=FALSE) 
+
+```
+
+# Visualization
+Make plots to visualize the results
+1. all short term vs. long term 
+2. in lab: short term vs. long term
+3. long term: in lab vs. online
+4. all in lab vs. online
+
+We want to reorder the variables so the figure looks more intuitive
+```{r helperF_reorder0}
+reorder_vars <- function(data,data_order){
+  subscales <- c("SRS_AWR", "SRS_COG", "SRS_COM", "SRS_MOT", "SRS_RRB")
+  data <- data %>%
+    mutate(variable = factor(variable, 
+                             levels = c(
+                               setdiff(data$variable, c("SRS", subscales))[order(data_order$ICC[!(data$variable %in% c("SRS", subscales))], decreasing = FALSE)],  # Finally, the rest in descending order of 'ICC',
+                               subscales[order(data_order$ICC[match(subscales, data$variable)], decreasing = FALSE)], # then order by subscales
+                              "SRS"  # First, always put 'SRS' on top
+                               )
+                             )
+           )
+  return(data)
+}
+```
+
+
+
+```{r vis_online_vs_inlab,fig.width=3,fig.height=5}
+ICC_lab = filter(ICC_all_types, sample == "In lab")
+ICC_lab <- reorder_vars(ICC_lab,ICC_lab)
+ICC_online = filter(ICC_all_types, sample == "Online")
+ICC_online <- reorder_vars(ICC_online,ICC_lab)
+
+ggplot() + 
+  # all lab
+  geom_point(data=ICC_lab, aes(x = variable, y = ICC), color = "orange", shape = 16, size = 2) +  # Represent the mean values
+  geom_errorbar(data=ICC_lab, aes(x = variable, y = ICC, ymin = `lower bound`, ymax = `upper bound`), color = "orange", width = 0.2) +  
+  # all online
+  geom_point(data=ICC_online, aes(x = variable, y = ICC), color = "blue",shape = 16, size = 2) +  # Represent the mean values
+  geom_errorbar(data=ICC_online, aes(x = variable, y = ICC, ymin = `lower bound`, ymax = `upper bound`), color = "blue",width = 0.2) +  
+  labs(x = "Variable", y = "ICC (95% CI)", title = "Lab vs. Online (no exclusion)") +
+  geom_hline(yintercept = 0.75, color="red")+
+  coord_flip()+
+  theme_minimal()+
+  theme(axis.text.y = element_text(size=6))
+
+# save ICC_lab and ICC_online
+write.csv(ICC_lab, "../results/ICC_lab.csv", row.names=FALSE, quote=FALSE) 
+write.csv(ICC_online, "../results/ICC_online.csv", row.names=FALSE, quote=FALSE) 
+```
