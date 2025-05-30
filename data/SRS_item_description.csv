@@ -1,0 +1,66 @@
+index,SRS_item,question_text,subscale,is_rev,Factor_simplified,Factor_OLpaper
+1,SRS_1,I am much more uncomfortable in social situations than when I am by myself.,mot,no,2,2
+2,SRS_2,My facial expressions send the wrong message to others about how I actually feel.,awr,no,1,1
+3,SRS_3,I feel self-confident when interacting with others.,mot,yes,4,4
+4,SRS_4,"When under stress, I engage in rigid or inflexible patterns of behavior that seem odd to people.",rrb,no,1,1
+5,SRS_5,I do not recognize when others are trying to take advantage of me.,cog,no,1,1
+6,SRS_6,I would rather be alone than with others.,mot,no,2,2
+7,SRS_7,I am usually aware of how others are feeling.,awr,yes,3,3
+8,SRS_8,I behave in ways that seem strange or bizarre to others.,rrb,no,,1
+9,SRS_9,I am overly dependent on others for help with meeting my everyday needs.,mot,no,1,1
+10,SRS_10,"I take things too literally, and because of that, I misinterpret the intended meaning of parts of a conversation.",cog,no,1,1
+11,SRS_11,I have good self-confidence.,mot,yes,4,4
+12,SRS_12,I am able to communicate my feelings to others.,com,yes,,4
+13,SRS_13,I am awkward in turn-taking interactions with others (e.g. I have a hard time keeping up with the give-and-take of a conversation).,com,no,5,5
+14,SRS_14,I am not well coordinated.,rrb,no,1,1
+15,SRS_15,"When people change their tone or facial expression, I usually pick up on that and understand what it means.",cog,yes,3,3
+16,SRS_16,I avoid eye contact or am told that I have unusual eye contact.,com,no,,1
+17,SRS_17,I recognize when something is unfair.,cog,yes,3,3
+18,SRS_18,"I have difficulty making friends, even when trying my best.",com,no,,5
+19,SRS_19,I get frustrated trying to get ideas across in conversations.,com,no,1,1
+20,SRS_20,I have sensory interests that others find unusual (e.g. smelling or looking at things in a special way).,rrb,no,1,1
+21,SRS_21,I am able to imitate others\ actions and expressions when it is socially appropriate to do so.,com,yes,3,3
+22,SRS_22,I interact appropriately with other adults.,com,yes,3,3
+23,SRS_23,I do not join group activities or social events unless prompted or strongly urged to do so.,mot,no,2,2
+24,SRS_24,I have more difficulty than others with changes in my routine.,rrb,no,,1
+25,SRS_25,"I do not mind being out of step with or ""not on the same wavelength"" as others.",awr,no,7,7
+26,SRS_26,I offer comfort to others when they are sad.,com,yes,3,3
+27,SRS_27,I avoid starting social interactions with other adults.,mot,no,2,2
+28,SRS_28,I think or talk about the same thing over and over.,rrb,no,1,1
+29,SRS_29,I am regarded by others as odd or weird.,rrb,no,,7
+30,SRS_30,I become upset in situations with lots of things going on.,cog,no,,1
+31,SRS_31,I can\t get my mind off something once I start thinking about it.,rrb,no,,1
+32,SRS_32,I have good personal hygiene.,awr,yes,,
+33,SRS_33,"My behavior is socially awkward, even when I am trying to be polite.",com,no,,5
+34,SRS_34,I avoid people who want to be emotionally close to me.,mot,no,,2
+35,SRS_35,I have trouble keeping up with the flow of a normal conversation.,com,no,,5
+36,SRS_36,I have difficulty relating to family members.,com,no,,
+37,SRS_37,I have difficulty relating to adults outside of my family.,com,no,2,2
+38,SRS_38,I respond appropriately to mood changes in others (e.g. when a friend\s mood changes from happy to sad).,com,yes,3,3
+39,SRS_39,"People think I am interested in too few topics, or that I get too carried away with those topics.",rrb,no,1,1
+40,SRS_40,I am imaginative.,cog,yes,7,7
+41,SRS_41,I sometimes seem to wander aimlessly from one activity to another.,com,no,1,1
+42,SRS_42,"I am overly sensitive to certain sounds, textures, or smells.",cog,no,1,1
+43,SRS_43,I enjoy small talk (casual conversation with others).,mot,yes,,2
+44,SRS_44,"I have more trouble than most people with understanding chains of causation, i.e. how events are related to one another.",cog,no,1,1
+45,SRS_45,"When others around me are paying attention to something, I get interested in what they are attending to.",awr,yes,3,3
+46,SRS_46,Others feel that I have overly serious facial expressions.,com,no,8,8
+47,SRS_47,I laugh at inappropriate times.,com,no,1,1
+48,SRS_48,I have a good sense of humor and can understand jokes.,cog,yes,3,3
+49,SRS_49,"I do extremely well at certain kinds of intellectual tasks, but do not do as well at most other tasks.",rrb,no,1,1
+50,SRS_50,I have repetitive behaviors that others consider odd.,rrb,no,1,1
+51,SRS_51,I have difficulty answering questions directly and end up talking around the subject.,com,no,1,1
+52,SRS_52,I get overly loud without realizing it.,awr,no,1,1
+53,SRS_53,I tend to talk in a monotone voice (i.e. less inflection of voice than most people demonstrate).,com,no,1,1
+54,SRS_54,I tend to think about people in the same way that I do objects.,awr,no,1,1
+55,SRS_55,I get too close to others or invade their personal space without realizing it.,com,no,,1
+56,SRS_56,I sometimes make the mistake of walking between two people who are trying to talk to one another.,awr,no,,1
+57,SRS_57,I tend to isolate myself.,com,no,2,2
+58,SRS_58,I concentrate too much on parts of things rather than seeing the whole picture.,cog,no,1,1
+59,SRS_59,I am more suspicious than most people.,cog,no,8,8
+60,SRS_60,Other people think I am emotionally distant and do not show my feelings.,com,no,,8
+61,SRS_61,I tend to be inflexible.,com,no,1,1
+62,SRS_62,"When I tell someone my reason for doing something, it strikes the person as unusual or illogical.",cog,no,1,1
+63,SRS_63,My way of greeting another person is unusual.,rrb,no,,1
+64,SRS_64,I am much more tense in social settings than when I am by myself.,mot,no,2,2
+65,SRS_65,I find myself staring or gazing off into space.,mot,no,1,1
